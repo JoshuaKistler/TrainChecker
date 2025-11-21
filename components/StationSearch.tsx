@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { searchStations } from '../services/transportService';
-import { Station } from '../types';
-import { SearchIcon, MapPinIcon } from './Icons';
+import { searchStations } from '../services/transportService.ts';
+import { Station } from '../types.ts';
+import { SearchIcon, MapPinIcon } from './Icons.tsx';
 
 interface StationSearchProps {
   onSelect: (station: Station) => void;

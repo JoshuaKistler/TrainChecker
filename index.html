@@ -46,10 +46,17 @@
         background: #94A3B8;
       }
     </style>
+    <!-- Babel for in-browser transpilation of TSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script>
+      // Shim process.env for browser environment to prevent crashes
+      window.process = { env: { API_KEY: '' } };
+    </script>
   <script type="importmap">
 {
   "imports": {
     "recharts": "https://aistudiocdn.com/recharts@^3.4.1",
+    "react-dom/client": "https://aistudiocdn.com/react-dom@^19.2.0/client",
     "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
     "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
     "react/": "https://aistudiocdn.com/react@^19.2.0/",
@@ -60,6 +67,6 @@
 </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="./index.tsx"></script>
+    <script type="text/babel" data-type="module" data-presets="typescript,react" src="./index.tsx"></script>
   </body>
 </html>

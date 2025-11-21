@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { getStationInsights } from '../services/geminiService';
-import { StationInsight } from '../types';
-import { SparklesIcon } from './Icons';
+import { getStationInsights } from '../services/geminiService.ts';
+import { StationInsight } from '../types.ts';
+import { SparklesIcon } from './Icons.tsx';
 
 interface StationInsightsProps {
   stationName: string;

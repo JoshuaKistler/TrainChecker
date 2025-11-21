@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import StationSearch from './components/StationSearch';
-import TrainList from './components/TrainList';
-import TrainDetailModal from './components/TrainDetailModal';
-import StationInsights from './components/StationInsights';
-import StatsChart from './components/StatsChart';
-import { Station, StationBoardEntry } from './types';
-import { getStationBoard } from './services/transportService';
-import { ClockIcon, TrainIcon } from './components/Icons';
+import StationSearch from './components/StationSearch.tsx';
+import TrainList from './components/TrainList.tsx';
+import TrainDetailModal from './components/TrainDetailModal.tsx';
+import StationInsights from './components/StationInsights.tsx';
+import StatsChart from './components/StatsChart.tsx';
+import { Station, StationBoardEntry } from './types.ts';
+import { getStationBoard } from './services/transportService.ts';
+import { ClockIcon, TrainIcon } from './components/Icons.tsx';
 
 const App: React.FC = () => {
   // -- State --

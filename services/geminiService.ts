@@ -1,5 +1,5 @@
 import { GoogleGenAI, Type } from "@google/genai";
-import { StationInsight } from "../types";
+import { StationInsight } from "../types.ts";
 
 // NOTE: In a real production app, never expose API keys in client-side code directly without a proxy.
 // However, for this coding task structure, we use process.env.API_KEY as instructed.

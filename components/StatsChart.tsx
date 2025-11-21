@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { BarChart, Bar, XAxis, Tooltip, ResponsiveContainer, Cell } from 'recharts';
-import { StationBoardEntry } from '../types';
+import { StationBoardEntry } from '../types.ts';
 
 interface StatsChartProps {
   trains: StationBoardEntry[];

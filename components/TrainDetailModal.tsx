@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import { StationBoardEntry } from '../types';
-import { XIcon, TrainIcon } from './Icons';
+import { StationBoardEntry } from '../types.ts';
+import { XIcon, TrainIcon } from './Icons.tsx';
 
 interface TrainDetailModalProps {
   train: StationBoardEntry | null;

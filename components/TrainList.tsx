@@ -1,6 +1,6 @@
 import React from 'react';
-import { StationBoardEntry } from '../types';
-import { TrainIcon, BusIcon, TramIcon, ShipIcon, ArrowRightIcon } from './Icons';
+import { StationBoardEntry } from '../types.ts';
+import { TrainIcon, BusIcon, TramIcon, ShipIcon, ArrowRightIcon } from './Icons.tsx';
 
 interface TrainListProps {
   trains: StationBoardEntry[];

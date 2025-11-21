@@ -1,4 +1,4 @@
-import { Station, StationBoardEntry } from '../types';
+import { Station, StationBoardEntry } from '../types.ts';
 
 const API_BASE = 'https://transport.opendata.ch/v1';
 
