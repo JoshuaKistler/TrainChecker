@@ -3,6 +3,7 @@ import { defineConfig, loadEnv } from "vite";
 import react from "@vitejs/plugin-react";
 
 export default defineConfig(({ mode }) => {
+  base: "https://joshuakistler.github.io/TrainChecker/";
   const env = loadEnv(mode, ".", "");
   return {
     server: {
