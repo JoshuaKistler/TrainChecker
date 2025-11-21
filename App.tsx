@@ -18,7 +18,7 @@ const App: React.FC = () => {
     return `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
   });
   const [duration, setDuration] = useState<number>(60); // Default 60 min range
-
+  
   // Data State
   const [trains, setTrains] = useState<StationBoardEntry[]>([]);
   const [loading, setLoading] = useState(false);
@@ -44,18 +44,19 @@ const App: React.FC = () => {
     const [hours, minutes] = timeStr.split(':').map(Number);
     const queryDate = new Date(now.getFullYear(), now.getMonth(), now.getDate(), hours, minutes);
     
-    // API limit logic: crude estimation, 2 trains per min approx max? 
-    // We fetch a batch and filter client side for the duration range if needed
-    const limit = Math.max(20, duration * 2); 
+    // API limit logic: fetch enough to filter client side if needed
+    const limit = Math.max(30, duration * 2); 
     
     const results = await getStationBoard(selectedStation.name, queryDate.toISOString(), limit);
     
     // Filter by duration strictly
     const endTime = queryDate.getTime() + (duration * 60 * 1000);
     const filtered = results.filter(t => {
-      if (!t.stop.departure) return false;
-      const depTime = new Date(t.stop.departure).getTime();
-      return depTime >= queryDate.getTime() && depTime <= endTime;
+      const timeStr = t.stop.departure;
+      if (!timeStr) return false;
+      
+      const itemTime = new Date(timeStr).getTime();
+      return itemTime >= queryDate.getTime() && itemTime <= endTime;
     });
 
     setTrains(filtered);
@@ -77,7 +78,7 @@ const App: React.FC = () => {
             </div>
           </div>
           <div className="text-xs font-medium bg-black/20 px-2 py-1 rounded">
-            v1.0
+            v1.1
           </div>
         </div>
       </header>
@@ -151,19 +152,30 @@ const App: React.FC = () => {
 
           {/* Right Column: Results */}
           <div className="lg:col-span-8">
-            <div className="flex justify-between items-end mb-4">
-               <h2 className="text-xl font-bold text-gray-900">
-                 {selectedStation ? `Departures from ${selectedStation.name}` : 'Select a station to begin'}
-               </h2>
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-end mb-4 space-y-2 sm:space-y-0">
+               <div>
+                 <h2 className="text-xl font-bold text-gray-900">
+                   {selectedStation 
+                      ? `Departures from ${selectedStation.name}` 
+                      : 'Select a station to begin'}
+                 </h2>
+                 {selectedStation && (
+                    <p className="text-sm text-gray-500 mt-1">
+                      Outgoing trains stopping here
+                    </p>
+                 )}
+               </div>
                {trains.length > 0 && (
-                 <span className="text-sm text-gray-500 font-medium">{trains.length} trains found</span>
+                 <span className="text-sm text-gray-500 font-medium bg-white px-3 py-1 rounded-full border border-gray-200 shadow-sm">
+                    {trains.length} trains found
+                 </span>
                )}
             </div>
             
             <TrainList 
               trains={trains} 
               loading={loading} 
-              onSelectTrain={setSelectedTrain} 
+              onSelectTrain={setSelectedTrain}
             />
           </div>
 
