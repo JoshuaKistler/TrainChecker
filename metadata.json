@@ -1,0 +1,5 @@
+{
+  "name": "TrainChecker",
+  "description": "A modern, real-time Swiss railway station board explorer with AI-powered station insights and traffic visualization.",
+  "requestFramePermissions": []
+}
